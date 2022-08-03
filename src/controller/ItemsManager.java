@@ -4,6 +4,7 @@ import model.Items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ItemsManager {
@@ -19,12 +20,12 @@ public class ItemsManager {
     }
 
     public void remove(String code) {
-        itemsList.removeIf(p -> p.getCode() == code);
+        itemsList.removeIf(p -> Objects.equals(p.getCode(), code));
     }
 
     public void editName(String code, String editName) {
         for (Items i: itemsList) {
-            if (i.getCode() == code) {
+            if (Objects.equals(i.getCode(), code)) {
                 i.setName(editName);
             }
         }
