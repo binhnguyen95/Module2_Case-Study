@@ -1,4 +1,6 @@
-package Model;
+package model;
+
+import java.time.LocalDate;
 
 public class Items {
     private String code;
@@ -6,16 +8,18 @@ public class Items {
     private String color;
     private String brand;
     private Double price;
+    private LocalDate releaseDate;
 
     public Items() {
     }
 
-    public Items(String code, String name, String color, String brand, Double price) {
+    public Items(String code, String name, String color, String brand, Double price, LocalDate releaseDate) {
         this.code = code;
         this.name = name;
         this.color = color;
         this.brand = brand;
         this.price = price;
+        this.releaseDate = releaseDate;
     }
 
     public String getCode() {
@@ -58,13 +62,21 @@ public class Items {
         this.price = price;
     }
 
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public String toString() {
-        return "Model.Clothes{" +
-                "name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                ", brand='" + brand + '\'' +
-                ", price=" + price +
-                '}';
+        return "[Code:" + code+
+                "] [Name:" + name+
+                "] [Color:" + color +
+                "] [Brand:" + brand +
+                "] [Price:" + price+
+                " $] [Release date:"+releaseDate;
     }
 }
