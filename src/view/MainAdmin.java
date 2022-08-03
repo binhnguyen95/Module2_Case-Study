@@ -18,18 +18,21 @@ public class MainAdmin {
 
     public static void main(String[] args) {
         ItemsManager itemsManager = new ItemsManager();
-        Shirt shirt1 = new Shirt("SH-05", "ao1", "den", "bub", 50.5, LocalDate.now());
+        Shirt shirt1 = new Shirt("SH-05", "ao 1", "den", "bub", 50.5, LocalDate.now());
+        Pant pant1 = new Pant("PA-01", "quan 1", "trang", "lacoste", 50.1, LocalDate.now());
         itemsManager.add(shirt1);
+        itemsManager.add(pant1);
 
 
         System.out.println("\n--------------CỬA HÀNG THỜI TRANG--------------");
         System.out.println("Nhập 1: Hiển thị danh sách hiện có");
-        System.out.println("Nhập 2: Thêm trang phục");
-        System.out.println("Nhập 3: Xóa trang phục");
-        System.out.println("Nhập 4: Sắp xếp theo giá");
-        System.out.println("Nhập 5: Tìm kiếm sản phẩm theo tên");
-        System.out.println("Nhập 6: Hàng mới về");
-        System.out.println("Nhập 7: >>> [SALE] <<<");
+        System.out.println("Nhập 2: Thêm sản phẩm");
+        System.out.println("Nhập 3: Sửa sản phẩm");
+        System.out.println("Nhập 4: Xóa sản phẩm");
+        System.out.println("Nhập 5: Sắp xếp theo giá");
+        System.out.println("Nhập 6: Tìm kiếm sản phẩm theo tên");
+        System.out.println("Nhập 7: Hàng mới về");
+        System.out.println("Nhập 8: >>> [SALE] <<<");
         System.out.println("Nhập 0: Thoát");
         System.out.println("----------------------------------------------");
         System.out.print("[Lựa chọn]:\t");
@@ -47,6 +50,9 @@ public class MainAdmin {
                     addItems(itemsManager);
                     break;
                 case 3:
+                    edit(itemsManager);
+                    break;
+                case 4:
                     removeItems(itemsManager);
                     break;
             }
@@ -57,13 +63,48 @@ public class MainAdmin {
         itemsManager.display();
     }
 
-    private static void edit(String code, int choice) {
-        switch (choice) {
-            case 1:
-                System.out.println("Nhập tên mới:");
-
+    private static void edit(ItemsManager items) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập mã sản phẩm mún sửa:");
+        String code = scanner.nextLine();
+        System.out.println("Nhập 1: Sửa tên");
+        System.out.println("Nhập 2: Sửa màu");
+        System.out.println("Nhập 3: Sửa hãng");
+        System.out.println("Nhập 4: Sũa giá");
+        System.out.print("[Lựa chọn]:\t");
+        int choice = scanner.nextInt();
+        if (validate.validateCode(code)) {
+            switch (choice) {
+                case 1:
+                    System.out.println("Mời bạn nhập vào tên mới:");
+                    Scanner name = new Scanner(System.in);
+                    String newName = name.nextLine();
+                    items.editName(code, newName);
+                    break;
+                case 2:
+                    System.out.println("Mời bạn nhập vào màu mới:");
+                    Scanner color = new Scanner(System.in);
+                    String newColor = color.nextLine();
+                    items.editColor(code, newColor);
+                    break;
+                case 3:
+                    System.out.println("Mời bạn nhập vào hãng mới:");
+                    Scanner brand = new Scanner(System.in);
+                    String newBrand = brand.nextLine();
+                    items.editBrand(code, newBrand);
+                    break;
+                case 4:
+                    System.out.println("Mời bạn nhập vào giá mới:");
+                    Scanner price = new Scanner(System.in);
+                    Double newPrice = price.nextDouble();
+                    items.editPrice(code, newPrice);
+                    break;
+            }
+        } else {
+            System.err.println("Cú pháp không hợp lệ!!!!");
+            System.out.println();
         }
-    }
+        }
 
     private static void addItems(ItemsManager items) {
         System.out.println("Nhập mã sản phẩm:");

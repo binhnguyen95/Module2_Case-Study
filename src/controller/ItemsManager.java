@@ -5,11 +5,10 @@ import model.Items;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class ItemsManager {
     List<Items> itemsList;
-    private final String PATHNAME_OF_ITEMS = "items.dat";
+//    private final String PATHNAME_OF_ITEMS = "items.dat";
 
     public ItemsManager() {
         itemsList = new ArrayList<>();
@@ -30,6 +29,31 @@ public class ItemsManager {
             }
         }
     }
+
+    public void editColor(String code, String editColor) {
+        for (Items i: itemsList) {
+            if (Objects.equals(i.getCode(), code)) {
+                i.setColor(editColor);
+            }
+        }
+    }
+
+    public void editBrand(String code, String editBrand) {
+        for (Items i: itemsList) {
+            if (Objects.equals(i.getCode(), code)) {
+                i.setBrand(editBrand);
+            }
+        }
+    }
+
+    public void editPrice(String code, Double editPrice) {
+        for (Items i: itemsList) {
+            if (Objects.equals(i.getCode(), code)) {
+                i.setPrice(editPrice);
+            }
+        }
+    }
+
     public void display() {
         int count = 1;
         System.out.println("[Số lượng sản phẩm: " + itemsList.size() + "]\n");
