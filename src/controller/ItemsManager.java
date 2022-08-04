@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class ItemsManager implements Serializable {
-    private List<Items> itemsList;
+//    private List<Items> itemsList = new ArrayList<>();
+    List<Items> itemsList = new ArrayList<>();
     private List<Jacket> jacketList;
     private List<Scarf> scarfList;
     private List<Spectacles> spectaclesList;
@@ -49,9 +50,11 @@ public class ItemsManager implements Serializable {
     }
 
     public void editName(String code, String editName) {
-        for (Items i: itemsList) {
-            if (Objects.equals(i.getCode(), code)) {
+        List<Items> list = readWriteData.readData("Items.a");
+        for (Items i: list) {
+            if (i.getCode().equals(code)) {
                 i.setName(editName);
+                break;
             }
         }
     }
@@ -136,7 +139,8 @@ public class ItemsManager implements Serializable {
     }
 
     public void sortHighestFirst() {
-        itemsList.sort(((o1, o2) -> {
+        List<Items> list = readWriteData.readData("Items.a");
+        list.sort(((o1, o2) -> {
             if (o1.getPrice() < o2.getPrice())
                 return 1;
             if (o1.getPrice() > o2.getPrice())
@@ -147,13 +151,7 @@ public class ItemsManager implements Serializable {
     }
 
     public void sortLowestFirst() {
-        itemsList.sort(((o1, o2) -> {
-            if (o1.getPrice() > o2.getPrice())
-                return 1;
-            if (o1.getPrice() < o2.getPrice())
-                return -1;
-            else return 0;
-        }));
+        itemsList.sort(((o1, o2) -> Double.compare(o2.getPrice(), o1.getPrice())));
         display();
     }
 
@@ -173,6 +171,6 @@ public class ItemsManager implements Serializable {
     }
 
     public void readFile() {
-        itemsList = (List<Items>) readWriteData.readData("Items.a");
+        itemsList = readWriteData.readData("Items.a");
     }
 }

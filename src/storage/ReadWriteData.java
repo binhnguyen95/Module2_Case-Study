@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ReadWriteData<E> {
     List<E> readData(String pathname);
-    void writeData(List<E> e, String pathname);
+    List<Items> writeData(List<E> e, String pathname);
 }

@@ -22,10 +22,10 @@ public class ReadWriteFile implements ReadWriteData {
             FileInputStream fis = new FileInputStream(pathname);
             ObjectInputStream ois = new ObjectInputStream(fis);
             Object ob = ois.readObject();
-            List<Items> employees = (List<Items>) ob;
+            List<Items> items = (List<Items>) ob;
             ois.close();
             fis.close();
-            return employees;
+            return items;
         } catch (FileNotFoundException e) {
             System.err.println("Khum tìm thấy file!!!!");
         } catch (IOException e) {
@@ -33,12 +33,11 @@ public class ReadWriteFile implements ReadWriteData {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
     @Override
-    public void writeData(List list, String pathname) {
+    public List<Items> writeData(List list, String pathname) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(pathname);
             ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
@@ -50,5 +49,6 @@ public class ReadWriteFile implements ReadWriteData {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

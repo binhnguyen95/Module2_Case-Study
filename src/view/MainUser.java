@@ -1,11 +1,6 @@
 package view;
 
 import controller.UserManager;
-import model.Items;
-import storage.ReadWriteData;
-import storage.ReadWriteFile;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class MainUser {
@@ -19,25 +14,38 @@ public class MainUser {
 
         while (true) {
             System.out.println("----------------Khách hàng-----------------");
-            System.out.println("[Nhập 1] Xem sản phẩm");
-            System.out.println("[Nhập 2] Hiển thị sản phẩm trong giỏ");
-            System.out.println("[Nhập 3] Ví");
+            System.out.println("[Nhập 1] Hiển thị sản phẩm");
+            System.out.println("[Nhập 2] Hiển thị sản phẩm giá thấp lên cao");
+            System.out.println("[Nhập 3] Hiển thị sản giá cao xuống thấp");
+            System.out.println("[Nhập 4] Hiển thị theo sản phẩm mới nhất trước");
+            System.out.println("[Nhập 5] Hiển thị sản phẩm trong giỏ");
+            System.out.println("[Nhập 6] Ví");
             System.out.println("[Nhập 0] THOÁT");
-            System.out.println("\n--------------------------------------------");
+            System.out.println("--------------------------------------------");
+            System.out.print("[Chọn]:\t");
             try {
-                int change = Integer.parseInt(scan.nextLine());
-                switch (change) {
+                int choice = Integer.parseInt(scan.nextLine());
+                switch (choice) {
                     case 1:
                         user.display();
                         System.out.println("\n[THÊM VÀO GIỎ]");
                         user.addProductsToCart(getIndex());
                         break;
-                    case 2: {
+                    case 2:
+                        user.sortLowestFirst();
+                        break;
+                    case 3:
+                        user.sortHighestFirst();
+                        break;
+                    case 4:
+                        user.sortByDate();
+                        break;
+                    case 5: {
                         user.showProductsInCart();
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
                         System.out.println("[NHẬP 2] THANH TOÁN SẢN PHẨM");
-                        change = Integer.parseInt(scan.nextLine());
-                        switch (change) {
+                        choice = Integer.parseInt(scan.nextLine());
+                        switch (choice) {
                             case 1:
                                 user.deleteProductInCart(getIndex());
                                 break;
@@ -45,15 +53,15 @@ public class MainUser {
                                 payment();
                                 break;
                         }
-
                     }
                     break;
-                    case 3: {
+                    case 6: {
                         double wallet = user.getUser().getWallet().getMoney();
                         System.out.println("Số dư trong ví:" + wallet);
                         System.out.println("\n[Nạp tiền]");
                         double money = Integer.parseInt(scan.nextLine());
                         user.addMoney(money);
+
                     }
                     break;
                     case 0:
@@ -76,9 +84,9 @@ public class MainUser {
 
     private static void payment() {
         double checkMoney = user.getUser().getWallet().getMoney();
-        double totalMoneyProduct = user.totalMoneyProduct();
+        double totalMoneyProduct = user.totalPrice();
         if (checkMoney >= totalMoneyProduct) {
-            user.payment();
+            user.check();
             System.out.println("\nThanh toán thành công. \t Cảm ơn quý khách\n");
         } else {
             System.err.println("Nạp tiền vào ví!!!");
