@@ -113,7 +113,27 @@ public class ItemsManager {
                 System.out.println(items);
             }
         }
+    }
 
+    public void sortHighestFirst() {
+        itemsList.sort(((o1, o2) -> {
+            if (o1.getPrice() < o2.getPrice())
+                return 1;
+            if (o1.getPrice() > o2.getPrice())
+                return -1;
+            else return 0;
+        }));
+        display();
+    }
 
+    public void sortLowestFirst() {
+        itemsList.sort(((o1, o2) -> {
+            if (o1.getPrice() > o2.getPrice())
+                return 1;
+            if (o1.getPrice() < o2.getPrice())
+                return -1;
+            else return 0;
+        }));
+        display();
     }
 }
