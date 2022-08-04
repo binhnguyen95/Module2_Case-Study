@@ -2,9 +2,10 @@ package model.accessories;
 
 import model.Items;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Belt extends Items {
+public class Belt extends Items implements Serializable {
     private String leather;
 
     public Belt(String code, String name, String color, String brand, Double price, String leather, LocalDate releaseDate) {

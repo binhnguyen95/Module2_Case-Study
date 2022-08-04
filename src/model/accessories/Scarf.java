@@ -2,9 +2,10 @@ package model.accessories;
 
 import model.Items;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Scarf extends Items {
+public class Scarf extends Items implements Serializable {
     private String design;
     private String fabric;
 

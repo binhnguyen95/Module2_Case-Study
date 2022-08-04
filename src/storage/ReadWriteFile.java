@@ -2,26 +2,53 @@ package storage;
 
 import model.Items;
 
+import java.io.*;
 import java.util.List;
 
-public class ReadWriteFileDat implements ReadWriteData {
-    private static ReadWriteFileDat instance=null;
+public class ReadWriteFile implements ReadWriteData {
+    private static ReadWriteFile instance=null;
 
-    private ReadWriteFileDat() {
+    private ReadWriteFile() {
     }
 
-    public static ReadWriteFileDat getInstance(){
-        if (instance == null) instance = new ReadWriteFileDat();
+    public static ReadWriteFile getInstance(){
+        if (instance == null) instance = new ReadWriteFile();
         return instance;
     }
 
     @Override
     public List readData(String pathname) {
+        try {
+            FileInputStream fis = new FileInputStream(pathname);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object ob = ois.readObject();
+            List<Items> employees = (List<Items>) ob;
+            ois.close();
+            fis.close();
+            return employees;
+        } catch (FileNotFoundException e) {
+            System.err.println("Khum tìm thấy file!!!!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
     public void writeData(List list, String pathname) {
-
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(pathname);
+            ObjectOutputStream oos = new ObjectOutputStream(fileOutputStream);
+            oos.writeObject(list);
+            oos.close();
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

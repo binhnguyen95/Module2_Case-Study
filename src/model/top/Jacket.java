@@ -2,9 +2,10 @@ package model.top;
 
 import model.Items;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Jacket extends Items {
+public class Jacket extends Items implements Serializable {
     private String fabric;
 
     public Jacket(String code, String name, String color, String brand, Double price, String fabric, LocalDate releaseDate) {

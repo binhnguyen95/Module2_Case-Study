@@ -2,12 +2,13 @@ package view;
 
 import controller.ItemsManager;
 import model.Items;
-import model.accessories.Belt;
 import model.accessories.Scarf;
 import model.accessories.Spectacles;
 import model.bottom.Pant;
 import model.top.Jacket;
 import model.top.Shirt;
+import storage.ReadWriteData;
+import storage.ReadWriteFile;
 import validate.Validate;
 
 import java.time.LocalDate;
@@ -20,16 +21,19 @@ public class MainAdmin {
     public static Scanner scan = new Scanner(System.in);
     private static final Validate validate = new Validate();
 
+
     public static void main(String[] args) {
+        ReadWriteData readWriteData = ReadWriteFile.getInstance();
         ItemsManager itemsManager = new ItemsManager();
-        Shirt shirt1 = new Shirt("SH05", "ao 1", "den", "bub", 50.5, LocalDate.now().minusMonths(3));
-        Pant pant1 = new Pant("PA01", "quan 1", "trang", "lacoste", 214.99, LocalDate.now().minusMonths(13));
-        Belt belt1 = new Belt("BE11", "that lung 1", "nau", "", 14.99, "crocodile", LocalDate.now().minusMonths(6));
-        Jacket jacket = new Jacket("JA21", "ao khoac", "vang", "", 29.99, "chinos", LocalDate.now().minusMonths(10));
-        itemsManager.add(shirt1);
-        itemsManager.add(pant1);
-        itemsManager.add(belt1);
-        itemsManager.add(jacket);
+        itemsManager.readFile();
+//        Shirt shirt1 = new Shirt("SH05", "ao 1", "den", "bub", 50.5, LocalDate.now().minusMonths(3));
+//        Pant pant1 = new Pant("PA01", "quan 1", "trang", "lacoste", 214.99, LocalDate.now().minusMonths(13));
+//        Belt belt1 = new Belt("BE11", "that lung 1", "nau", "", 14.99, "crocodile", LocalDate.now().minusMonths(6));
+//        Jacket jacket = new Jacket("JA21", "ao khoac", "vang", "", 29.99, "chinos", LocalDate.now().minusMonths(10));
+//        itemsManager.add(shirt1);
+//        itemsManager.add(pant1);
+//        itemsManager.add(belt1);
+//        itemsManager.add(jacket);
 
         while(true) {
             System.out.println("\n-------------CỬA HÀNG THỜI TRANG-------------");
@@ -64,7 +68,10 @@ public class MainAdmin {
                         break;
                     case 4:
                         itemsManager.display();
-                        removeItems(itemsManager);
+                        System.out.print("Nhập vị trí muốn xóa (1-n):");
+                        int index = scan.nextInt();
+                        scan.nextLine();
+                        itemsManager.remove(index);
                         break;
                     case 5:
                         itemsManager.sortLowestFirst();
@@ -238,7 +245,7 @@ public class MainAdmin {
                 System.out.println("Sản phẩm không tồn tại!!");
                 break;
                 }
-            return null;
+        return null;
         }
 
     private static void addItems(ItemsManager items) {
@@ -294,14 +301,5 @@ public class MainAdmin {
         }
     }
 
-    private static void removeItems(ItemsManager items) {
-        System.out.println("Nhập mã sản phẩm mún xóa:");
-        String code = scan.nextLine();
-        if (validate.validateCode(code)) {
-            items.remove(code);
-        } else {
-            System.err.println("Cú pháp không hợp lệ!!!!");
-            System.out.println();
-        }
-    }
+
 }

@@ -2,9 +2,10 @@ package model.accessories;
 
 import model.Items;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Spectacles extends Items {
+public class Spectacles extends Items implements Serializable {
     private String shape;
 
     public Spectacles(String code, String name, String color, String brand, Double price, String shape, LocalDate releaseDate) {
