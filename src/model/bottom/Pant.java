@@ -10,6 +10,16 @@ public class Pant extends Items {
     }
 
     @Override
+    public LocalDate getExpiryDate() {
+        return this.getReleaseDate().plusYears(1);
+    }
+
+    @Override
+    public double getRealMoney() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Pant { " +
                 super.toString()+

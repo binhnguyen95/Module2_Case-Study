@@ -136,4 +136,15 @@ public class ItemsManager {
         }));
         display();
     }
+
+    public void sortByDate() {
+        itemsList.sort(((o1, o2) -> {
+            if (o1.getReleaseDate().isBefore(o2.getReleaseDate()))
+                return 1;
+            if (o1.getReleaseDate().isAfter(o2.getReleaseDate()))
+                return -1;
+            else return 0;
+        }));
+        display();
+    }
 }

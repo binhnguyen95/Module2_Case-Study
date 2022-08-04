@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Items implements iItem {
+public abstract class Items implements Discount, iItem {
     private String code;
     private String name;
     private String color;
@@ -69,6 +69,11 @@ public class Items implements iItem {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    public abstract LocalDate getExpiryDate();
+
+    @Override
+    public abstract double getRealMoney();
 
     @Override
     public String toString() {

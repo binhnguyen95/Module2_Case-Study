@@ -31,6 +31,16 @@ public class Scarf extends Items {
     }
 
     @Override
+    public LocalDate getExpiryDate() {
+        return this.getReleaseDate().plusMonths(6);
+    }
+
+    @Override
+    public double getRealMoney() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Scarf { " +
                 super.toString()+

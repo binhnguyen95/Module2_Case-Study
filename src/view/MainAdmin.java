@@ -37,10 +37,10 @@ public class MainAdmin {
             System.out.println("Nhập 2: Thêm sản phẩm");
             System.out.println("Nhập 3: Sửa sản phẩm");
             System.out.println("Nhập 4: Xóa sản phẩm");
-            System.out.println("Nhập 5: Sắp xếp theo giá từ thấp lên cao");
-            System.out.println("Nhập 6: Sắp xếp theo giá từ cao xuống thấp");
-            System.out.println("Nhập 7: Tìm kiếm sản phẩm theo tên");
-            System.out.println("Nhập 8: Hàng mới về");
+            System.out.println("Nhập 5: Hiển thị theo giá từ thấp lên cao");
+            System.out.println("Nhập 6: Hiển thị theo giá từ cao xuống thấp");
+            System.out.println("Nhập 7: Hiển thị theo sản phẩm mới nhất");
+            System.out.println("Nhập 8: Tìm kiếm sản phẩm theo tên");
             System.out.println("Nhập 9: >>> [SALE] <<<");
             System.out.println("Nhập 0: Thoát");
             System.out.println("----------------------------------------------");
@@ -72,6 +72,9 @@ public class MainAdmin {
                     case 6:
                         itemsManager.sortHighestFirst();
                         break;
+                    case 7:
+                        itemsManager.sortByDate();
+                        break;
                     case 0:
                         System.err.println("BIE BIE");
                         return;
@@ -82,7 +85,6 @@ public class MainAdmin {
                 System.err.println("YÊU CẦU NHẬP LỰA CHỌN BẰNG SỐ!!!!");
             }
         }
-
     }
 
 
@@ -244,14 +246,14 @@ public class MainAdmin {
         String code = scan.nextLine();
         if (validate.validateCode(code)) {
             String type = code.substring(0, 2);
-            items.add(infomation(type, code));
+            items.add(addInfomation(type, code));
         } else {
             System.err.println("Cú pháp không hợp lệ!!!!");
             System.out.println();
         }
     }
 
-    private static Items infomation(String type, String code) {
+    private static Items addInfomation(String type, String code) {
         System.out.println("Nhập tên sản phẩm:");
         String name = scan.nextLine();
         System.out.println("Nhập màu sắc sản phẩm:");
