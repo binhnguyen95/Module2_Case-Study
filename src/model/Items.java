@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Items implements Iitem {
+public class Items implements iItem {
     private String code;
     private String name;
     private String color;

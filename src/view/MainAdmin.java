@@ -22,10 +22,10 @@ public class MainAdmin {
 
     public static void main(String[] args) {
         ItemsManager itemsManager = new ItemsManager();
-        Shirt shirt1 = new Shirt("SH05", "ao 1", "den", "bub", 50.5, LocalDate.now());
-        Pant pant1 = new Pant("PA01", "quan 1", "trang", "lacoste", 214.99, LocalDate.now());
+        Shirt shirt1 = new Shirt("SH05", "ao 1", "den", "bub", 50.5, LocalDate.now().minusMonths(3));
+        Pant pant1 = new Pant("PA01", "quan 1", "trang", "lacoste", 214.99, LocalDate.now().minusMonths(13));
         Belt belt1 = new Belt("BE11", "that lung 1", "nau", "", 14.99, "crocodile", LocalDate.now().minusMonths(6));
-        Jacket jacket = new Jacket("JA21", "ao khoac", "vang", "", 29.99, "chinos", LocalDate.now().minusMonths(6));
+        Jacket jacket = new Jacket("JA21", "ao khoac", "vang", "", 29.99, "chinos", LocalDate.now().minusMonths(10));
         itemsManager.add(shirt1);
         itemsManager.add(pant1);
         itemsManager.add(belt1);
