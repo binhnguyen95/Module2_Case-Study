@@ -9,15 +9,12 @@ public class MainUser {
 
 
     public static void main(String[] args) {
-//        UserManager user = new UserManager();
-        user.display();
-
         while (true) {
             System.out.println("----------------Khách hàng-----------------");
             System.out.println("[Nhập 1] Hiển thị sản phẩm");
-            System.out.println("[Nhập 2] Hiển thị sản phẩm giá thấp lên cao");
-            System.out.println("[Nhập 3] Hiển thị sản giá cao xuống thấp");
-            System.out.println("[Nhập 4] Hiển thị theo sản phẩm mới nhất trước");
+//            System.out.println("[Nhập 2] Hiển thị sản phẩm giá thấp lên cao");
+//            System.out.println("[Nhập 3] Hiển thị sản giá cao xuống thấp");
+//            System.out.println("[Nhập 4] Hiển thị theo sản phẩm mới nhất trước");
             System.out.println("[Nhập 5] Hiển thị sản phẩm trong giỏ");
             System.out.println("[Nhập 6] Ví");
             System.out.println("[Nhập 0] THOÁT");
@@ -31,15 +28,15 @@ public class MainUser {
                         System.out.println("\n[THÊM VÀO GIỎ]");
                         user.addProductsToCart(getIndex());
                         break;
-                    case 2:
-                        user.sortLowestFirst();
-                        break;
-                    case 3:
-                        user.sortHighestFirst();
-                        break;
-                    case 4:
-                        user.sortByDate();
-                        break;
+//                    case 2:
+//                        user.sortLowestFirst();
+//                        break;
+//                    case 3:
+//                        user.sortHighestFirst();
+//                        break;
+//                    case 4:
+//                        user.sortByDate();
+//                        break;
                     case 5: {
                         user.showProductsInCart();
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
@@ -86,7 +83,7 @@ public class MainUser {
         double checkMoney = user.getUser().getWallet().getMoney();
         double totalMoneyProduct = user.totalPrice();
         if (checkMoney >= totalMoneyProduct) {
-            user.check();
+            user.payment();
             System.out.println("\nThanh toán thành công. \t Cảm ơn quý khách\n");
         } else {
             System.err.println("Nạp tiền vào ví!!!");

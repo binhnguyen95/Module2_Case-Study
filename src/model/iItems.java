@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public interface iItem {
+public interface iItems {
     String code = null;
     String name = null;
     String color = null;

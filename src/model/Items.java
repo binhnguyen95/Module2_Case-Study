@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Items implements Discount, iItem, Serializable {
+public abstract class Items implements Discount, iItems, Serializable {
     private String code;
     private String name;
     private String color;

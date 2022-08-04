@@ -20,10 +20,7 @@ public class ItemsManager implements Serializable {
     private List<Scarf> scarfList;
     private List<Spectacles> spectaclesList;
     private List<Belt> beltList;
-
     private ReadWriteData readWriteData = ReadWriteFile.getInstance();
-
-//    private final String PATHNAME_OF_ITEMS = "items.dat";
 
     public ItemsManager() {
         itemsList = new ArrayList<>();
@@ -50,83 +47,49 @@ public class ItemsManager implements Serializable {
     }
 
     public void editName(String code, String editName) {
-        List<Items> list = readWriteData.readData("Items.a");
-        for (Items i: list) {
+        for (Items i: itemsList) {
             if (i.getCode().equals(code)) {
                 i.setName(editName);
                 break;
             }
         }
+        readWriteData.writeData(itemsList, "Items.a");
     }
 
     public void editColor(String code, String editColor) {
         for (Items i: itemsList) {
-            if (Objects.equals(i.getCode(), code)) {
+            if (i.getCode().equals(code)) {
                 i.setColor(editColor);
+                break;
             }
         }
+        readWriteData.writeData(itemsList, "Items.a");
     }
 
     public void editBrand(String code, String editBrand) {
         for (Items i: itemsList) {
-            if (Objects.equals(i.getCode(), code)) {
+            if (i.getCode().equals(code)) {
                 i.setBrand(editBrand);
+                break;
             }
         }
+        readWriteData.writeData(itemsList, "Items.a");
     }
 
     public void editPrice(String code, Double editPrice) {
         for (Items i: itemsList) {
-            if (Objects.equals(i.getCode(), code)) {
+            if (i.getCode().equals(code)) {
                 i.setPrice(editPrice);
+                break;
             }
         }
-    }
-
-    public void editJacketFabric(String code, String editFabric) {
-        for (Jacket i: jacketList) {
-            if (Objects.equals(i.getCode(), code)) {
-                i.setFabric(editFabric);
-            }
-        }
-    }
-
-    public void editLeather(String code, String editLeather) {
-        for (Belt i: beltList) {
-            if (Objects.equals(i.getCode(), code)) {
-                i.setLeather(editLeather);
-            }
-        }
-    }
-
-    public void editDesign(String code, String editDesign) {
-        for (Scarf i: scarfList) {
-            if (Objects.equals(i.getCode(), code)) {
-                i.setDesign(editDesign);
-            }
-        }
-    }
-
-    public void editScarfFabric(String code, String editFabric) {
-        for (Scarf i: scarfList) {
-            if (Objects.equals(i.getCode(), code)) {
-                i.setFabric(editFabric);
-            }
-        }
-    }
-
-    public void editShape(String code, String editShape) {
-        for (Spectacles i: spectaclesList) {
-            if (Objects.equals(i.getCode(), code)) {
-                i.setShape(editShape);
-            }
-        }
+        readWriteData.writeData(itemsList, "Items.a");
     }
 
     public void display() {
         int count=1;
         try{
-            List<Items> displayFile = readWriteData.readData("Items.a");
+            ArrayList<Items> displayFile = readWriteData.readData("Items.a");
             for (Items i: displayFile
             ) {
                 System.out.println(count +". "+ i);
@@ -139,7 +102,7 @@ public class ItemsManager implements Serializable {
     }
 
     public void sortHighestFirst() {
-        List<Items> list = readWriteData.readData("Items.a");
+        ArrayList<Items> list = readWriteData.readData("Items.a");
         list.sort(((o1, o2) -> {
             if (o1.getPrice() < o2.getPrice())
                 return 1;
@@ -155,16 +118,6 @@ public class ItemsManager implements Serializable {
         display();
     }
 
-    public void sortByDate() {
-        itemsList.sort(((o1, o2) -> {
-            if (o1.getReleaseDate().isBefore(o2.getReleaseDate()))
-                return 1;
-            if (o1.getReleaseDate().isAfter(o2.getReleaseDate()))
-                return -1;
-            else return 0;
-        }));
-        display();
-    }
 
     public void writeFile() {
         readWriteData.writeData(itemsList, "Items.a");
@@ -173,4 +126,5 @@ public class ItemsManager implements Serializable {
     public void readFile() {
         itemsList = readWriteData.readData("Items.a");
     }
+
 }

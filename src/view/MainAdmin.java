@@ -66,7 +66,7 @@ public class MainAdmin {
                         break;
                     case 3:
                         itemsManager.display();
-//                        editItem(itemsManager);
+                        editItems(itemsManager);
                         break;
                     case 4:
                         itemsManager.display();
@@ -81,9 +81,6 @@ public class MainAdmin {
                     case 6:
                         itemsManager.sortHighestFirst();
                         break;
-                    case 7:
-                        itemsManager.sortByDate();
-                        break;
                     case 0:
                         System.err.println("BIE BIE");
                         return;
@@ -97,159 +94,51 @@ public class MainAdmin {
     }
 
 
-//    private static void editItem(ItemsManager items){
-//        items.readFile();
-//        System.out.println("Nhập mã sản phẩm muốn sửa:");
-//        String code = scan.nextLine();
-//        if (validate.validateCode(code)) {
-//            String type = code.substring(0, 2);
-//            items.add(editInfomation(type, code, items));
-//        } else {
-//            System.err.println("Cú pháp không hợp lệ!!!!");
-//            System.out.println();
-//        }
-//    }
-//
-//    private static Items editInfomation(String type, String code, ItemsManager items) {
-//        switch (type) {
-//            case "SH":
-//            case "PA":
-//                try {
-//                    System.out.println("Nhập 1: Sửa tên");
-//                    System.out.println("Nhập 2: Sửa màu");
-//                    System.out.println("Nhập 3: Sửa hãng");
-//                    System.out.println("Nhập 4: Sũa giá");
-//                    Scanner scan = new Scanner(System.in);
-//                    int choice = scan.nextInt();
-//                    switch (choice) {
-//                        case 1:
-//                            System.out.println("Mời bạn nhập vào tên mới:");
-//                            Scanner name = new Scanner(System.in);
-//                            String newName = name.nextLine();
-//                            items.editName(code, newName);
-//                            break;
-//                        case 2:
-//                            System.out.println("Mời bạn nhập vào màu mới:");
-//                            Scanner color = new Scanner(System.in);
-//                            String newColor = color.nextLine();
-//                            items.editColor(code, newColor);
-//                            break;
-//                        case 3:
-//                            System.out.println("Mời bạn nhập vào hãng mới:");
-//                            Scanner brand = new Scanner(System.in);
-//                            String newBrand = brand.nextLine();
-//                            items.editBrand(code, newBrand);
-//                            break;
-//                        case 4:
-//                            System.out.println("Mời bạn nhập vào giá mới:");
-//                            Scanner price = new Scanner(System.in);
-//                            Double newPrice = price.nextDouble();
-//                            items.editPrice(code, newPrice);
-//                            break;
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Nhập sai, vui lòng nhập lại");
-//                    editInfomation(type, code, items);
-//                }
-//                break;
-//            case "JA":
-//                try {
-//                    System.out.println("Nhập 1: Sửa tên");
-//                    System.out.println("Nhập 2: Sửa màu");
-//                    System.out.println("Nhập 3: Sửa hãng");
-//                    System.out.println("Nhập 4: Sũa giá");
-//                    System.out.println("Nhập 5: Sũa loại vải");
-//                    Scanner scan = new Scanner(System.in);
-//                    int choice = scan.nextInt();
-//                    switch (choice) {
-//                        case 1:
-//                            System.out.println("Mời bạn nhập vào tên mới:");
-//                            Scanner name = new Scanner(System.in);
-//                            String newName = name.nextLine();
-//                            items.editName(code, newName);
-//                            break;
-//                        case 2:
-//                            System.out.println("Mời bạn nhập vào màu mới:");
-//                            Scanner color = new Scanner(System.in);
-//                            String newColor = color.nextLine();
-//                            items.editColor(code, newColor);
-//                            break;
-//                        case 3:
-//                            System.out.println("Mời bạn nhập vào hãng mới:");
-//                            Scanner brand = new Scanner(System.in);
-//                            String newBrand = brand.nextLine();
-//                            items.editBrand(code, newBrand);
-//                            break;
-//                        case 4:
-//                            System.out.println("Mời bạn nhập vào giá mới:");
-//                            Scanner price = new Scanner(System.in);
-//                            Double newPrice = price.nextDouble();
-//                            items.editPrice(code, newPrice);
-//                            break;
-//                        case 5:
-//                            System.out.println("Mời bạn nhập vào loại vải mới:");
-//                            Scanner fabric = new Scanner(System.in);
-//                            String newFabric = fabric.nextLine();
-//                            items.editJacketFabric(code, newFabric);
-//                            break;
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Nhập sai, vui lòng nhập lại");
-//                    editInfomation(type, code, items);
-//                }
-//                break;
-//            case "BE":
-//                try {
-//                    System.out.println("Nhập 1: Sửa tên");
-//                    System.out.println("Nhập 2: Sửa màu");
-//                    System.out.println("Nhập 3: Sửa hãng");
-//                    System.out.println("Nhập 4: Sũa giá");
-//                    System.out.println("Nhập 5: Sũa loại da");
-//                    Scanner scan = new Scanner(System.in);
-//                    int choice = scan.nextInt();
-//                    switch (choice) {
-//                        case 1:
-//                            System.out.println("Mời bạn nhập vào tên mới:");
-//                            Scanner name = new Scanner(System.in);
-//                            String newName = name.nextLine();
-//                            items.editName(code, newName);
-//                            break;
-//                        case 2:
-//                            System.out.println("Mời bạn nhập vào màu mới:");
-//                            Scanner color = new Scanner(System.in);
-//                            String newColor = color.nextLine();
-//                            items.editColor(code, newColor);
-//                            break;
-//                        case 3:
-//                            System.out.println("Mời bạn nhập vào hãng mới:");
-//                            Scanner brand = new Scanner(System.in);
-//                            String newBrand = brand.nextLine();
-//                            items.editBrand(code, newBrand);
-//                            break;
-//                        case 4:
-//                            System.out.println("Mời bạn nhập vào giá mới:");
-//                            Scanner price = new Scanner(System.in);
-//                            Double newPrice = price.nextDouble();
-//                            items.editPrice(code, newPrice);
-//                            break;
-//                        case 5:
-//                            System.out.println("Mời bạn nhập vào loại da mới:");
-//                            Scanner leather = new Scanner(System.in);
-//                            String newLeather = leather.nextLine();
-//                            items.editLeather(code, newLeather);
-//                            break;
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Nhập sai, vui lòng nhập lại");
-//                    editInfomation(type, code, items);
-//                }
-//                break;
-//            default:
-//                System.out.println("Sản phẩm không tồn tại!!");
-//                }
-//                items.writeFile();
-//                return null;
-//    }
+    private static void editItems(ItemsManager items){
+        System.out.println("Nhập mã sản phẩm muốn sửa:");
+        String code = scan.nextLine();
+        if (validate.validateCode(code)) {
+            try {
+                System.out.println("Nhập 1: Sửa tên");
+                System.out.println("Nhập 2: Sửa màu");
+                System.out.println("Nhập 3: Sửa hãng");
+                System.out.println("Nhập 4: Sũa giá");
+                System.out.print("[Chọn]:\t");
+                int choice = Integer.parseInt(scan.nextLine());
+                switch (choice) {
+                    case 1:
+                        System.out.println("Mời bạn nhập vào tên mới:");
+                        Scanner name = new Scanner(System.in);
+                        String newName = name.nextLine();
+                        items.editName(code, newName);
+                        break;
+                    case 2:
+                        System.out.println("Mời bạn nhập vào màu mới:");
+                        Scanner color = new Scanner(System.in);
+                        String newColor = color.nextLine();
+                        items.editColor(code, newColor);
+                        break;
+                    case 3:
+                        System.out.println("Mời bạn nhập vào hãng mới:");
+                        Scanner brand = new Scanner(System.in);
+                        String newBrand = brand.nextLine();
+                        items.editBrand(code, newBrand);
+                        break;
+                    case 4:
+                        System.out.println("Mời bạn nhập vào giá mới:");
+                        Scanner price = new Scanner(System.in);
+                        Double newPrice = price.nextDouble();
+                        items.editPrice(code, newPrice);
+                        break;
+                }
+            } catch(InputMismatchException e){
+                System.out.println("Nhập sai, vui lòng nhập lại");
+            }
+        } else {
+            System.err.println("Cú pháp không hợp lệ!!!!");
+            System.out.println();
+        }
+    }
 
     private static void addItems(ItemsManager items) {
         System.out.println("Nhập mã sản phẩm:");
