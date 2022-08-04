@@ -5,18 +5,26 @@ import model.Items;
 import java.time.LocalDate;
 
 public class Spectacles extends Items {
-    private final String lens;
+    private String shape;
 
-    public Spectacles(String code, String name, String color, String brand, Double price, LocalDate releaseDate, String lens) {
+    public Spectacles(String code, String name, String color, String brand, Double price, String shape, LocalDate releaseDate) {
         super(code, name, color, brand, price, releaseDate);
-        this.lens = lens;
+        this.shape = shape;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public void setShape(String shape) {
+        this.shape = shape;
     }
 
     @Override
     public String toString() {
         return "Spectacles { " +
                 super.toString()+
-                "][Lens:" + lens+
+                "][Shape:" + shape+
                 "] }";
     }
 }

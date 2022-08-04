@@ -16,12 +16,12 @@ public class ReadWriteFileDat implements ReadWriteData {
     }
 
     @Override
-    public List<Items> readData(String pathname) {
+    public List readData(String pathname) {
         return null;
     }
 
     @Override
-    public void writeData(List<Items> itemsList, String pathname) {
+    public void writeData(List list, String pathname) {
 
     }
 }

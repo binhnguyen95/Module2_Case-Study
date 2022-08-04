@@ -4,7 +4,7 @@ import model.Items;
 
 import java.util.List;
 
-public interface ReadWriteData {
-    List<Items> readData(String pathname);
-    void writeData(List<Items> itemsList, String pathname);
+public interface ReadWriteData<E> {
+    List<E> readData(String pathname);
+    void writeData(List<E> e, String pathname);
 }

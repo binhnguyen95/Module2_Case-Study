@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validate {
-    private static final String CODE_REGEX = "^(SH|PA|SC|SP)-[\\d]+$";
+    private static final String CODE_REGEX = "^(SH|JA|PA|BE|SC|SP)[\\d]+$";
 
     public Validate() {
     }
