@@ -6,6 +6,7 @@ import storage.ReadWriteData;
 import storage.ReadWriteFile;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserManager {
@@ -38,6 +39,18 @@ public class UserManager {
         }
     }
 
+    public void displayHighestFirst() {
+        itemsList.sort(((o1, o2) -> Double.compare(o2.getPrice(), o1.getPrice())));
+        readWriteData.writeData(itemsList, "Items.a");
+        display();
+    }
+
+    public void displayLowestFirst() {
+        itemsList.sort((Comparator.comparingDouble(Items::getPrice)));
+        readWriteData.writeData(itemsList, "Items.a");
+        display();
+    }
+
     // lựa chọn sản phẩm trong cửa hàng
     public Items selected(int index) {
         Items product = itemsList.get(index);
@@ -46,8 +59,8 @@ public class UserManager {
 
     // thêm sản phẩm vào giỏ hàng
     public void addProductsToCart(int index) {
-        cartList.add(selected(index));
-        readWriteData.writeData(cartList, "Cart.a");
+        itemsList.add(selected(index));
+        readWriteData.writeData(itemsList, "Cart.a");
     }
 
     // hiển thị sản phẩm trong giỏ

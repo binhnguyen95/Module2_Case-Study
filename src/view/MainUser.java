@@ -20,6 +20,8 @@ public class MainUser {
             System.out.println("[Nhập 1] Hiển thị sản phẩm");
             System.out.println("[Nhập 2] Thêm sản phẩm vào giỏ");
             System.out.println("[Nhập 3] Hiển thị sản phẩm trong giỏ");
+            System.out.println("[Nhập 4] Hiển thị theo giá thấp nhất trước");
+            System.out.println("[Nhập 5] Hiển thị theo giá cao nhất trước");
             System.out.println("[Nhập 0] THOÁT");
             System.out.println("--------------------------------------------");
             System.out.print("[Chọn]:\t");
@@ -55,6 +57,12 @@ public class MainUser {
                         }
                     }
                     break;
+                    case 4:
+                        user.displayLowestFirst();
+                        break;
+                    case 5:
+                        user.displayHighestFirst();
+                        break
                     case 0:
                         return;
                     default:
