@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class ItemsManager implements Serializable {
 //    private List<Items> itemsList = new ArrayList<>();
-    List<Items> itemsList = new ArrayList<>();
+    private ArrayList<Items> itemsList;
     private List<Jacket> jacketList;
     private List<Scarf> scarfList;
     private List<Spectacles> spectaclesList;

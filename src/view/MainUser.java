@@ -1,6 +1,10 @@
 package view;
 
+import controller.ItemsManager;
 import controller.UserManager;
+import model.Items;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainUser {
@@ -9,14 +13,12 @@ public class MainUser {
 
 
     public static void main(String[] args) {
+        ArrayList<Items> items = new ArrayList<>();
         while (true) {
             System.out.println("----------------Khách hàng-----------------");
             System.out.println("[Nhập 1] Hiển thị sản phẩm");
-//            System.out.println("[Nhập 2] Hiển thị sản phẩm giá thấp lên cao");
-//            System.out.println("[Nhập 3] Hiển thị sản giá cao xuống thấp");
-//            System.out.println("[Nhập 4] Hiển thị theo sản phẩm mới nhất trước");
-            System.out.println("[Nhập 5] Hiển thị sản phẩm trong giỏ");
-            System.out.println("[Nhập 6] Ví");
+            System.out.println("[Nhập 2] Hiển thị sản phẩm trong giỏ");
+            System.out.println("[Nhập 3] Ví");
             System.out.println("[Nhập 0] THOÁT");
             System.out.println("--------------------------------------------");
             System.out.print("[Chọn]:\t");
@@ -26,18 +28,9 @@ public class MainUser {
                     case 1:
                         user.display();
                         System.out.println("\n[THÊM VÀO GIỎ]");
-                        user.addProductsToCart(getIndex());
+                        user.addProductsToCart(items);
                         break;
-//                    case 2:
-//                        user.sortLowestFirst();
-//                        break;
-//                    case 3:
-//                        user.sortHighestFirst();
-//                        break;
-//                    case 4:
-//                        user.sortByDate();
-//                        break;
-                    case 5: {
+                    case 2: {
                         user.showProductsInCart();
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
                         System.out.println("[NHẬP 2] THANH TOÁN SẢN PHẨM");
@@ -52,7 +45,7 @@ public class MainUser {
                         }
                     }
                     break;
-                    case 6: {
+                    case 3: {
                         double wallet = user.getUser().getWallet().getMoney();
                         System.out.println("Số dư trong ví:" + wallet);
                         System.out.println("\n[Nạp tiền]");

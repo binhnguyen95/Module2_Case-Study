@@ -45,9 +45,6 @@ public class MainAdmin {
             System.out.println("[Nhập 4] Xóa sản phẩm");
             System.out.println("[Nhập 5] Hiển thị theo giá từ thấp lên cao");
             System.out.println("[Nhập 6] Hiển thị theo giá từ cao xuống thấp");
-            System.out.println("[Nhập 7] Hiển thị theo sản phẩm mới nhất trước");
-            System.out.println("[Nhập 8] Tìm kiếm sản phẩm theo tên");
-            System.out.println("[Nhập 9] >>> [SALE] <<<");
             System.out.println("[Nhập 0] THOÁT");
             System.out.println("----------------------------------------------");
             System.out.print("[Chọn]:\t");
