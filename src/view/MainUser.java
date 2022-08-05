@@ -1,5 +1,6 @@
 package view;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import controller.ItemsManager;
 import controller.UserManager;
 import model.Items;
@@ -19,7 +20,6 @@ public class MainUser {
             System.out.println("[Nhập 1] Hiển thị sản phẩm");
             System.out.println("[Nhập 2] Thêm sản phẩm vào giỏ");
             System.out.println("[Nhập 3] Hiển thị sản phẩm trong giỏ");
-            System.out.println("[Nhập 4] Ví");
             System.out.println("[Nhập 0] THOÁT");
             System.out.println("--------------------------------------------");
             System.out.print("[Chọn]:\t");
@@ -37,7 +37,7 @@ public class MainUser {
                     case 3: {
                         user.showProductsInCart();
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
-                        System.out.println("[NHẬP 2] THANH TOÁN SẢN PHẨM");
+                        System.out.println("[NHẬP 2] TỔNG TIỀN SẢN PHẨM");
                         System.out.println("[NHẬP 0] THOÁT");
                         choice = Integer.parseInt(scan.nextLine());
                         switch (choice) {
@@ -45,7 +45,8 @@ public class MainUser {
                                 user.deleteProductInCart(getIndex());
                                 break;
                             case 2:
-
+                                System.out.println("Tổng tiền của sản phẩm là");
+                                System.out.println(user.totalPrice());
                                 break;
                             case 0:
                                 break;
