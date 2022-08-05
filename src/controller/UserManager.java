@@ -9,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserManager {
-    List<ArrayList<Items>> itemsList;
     ReadWriteData readWriteData = ReadWriteFile.getInstance();
-    List<Items> productList = readWriteData.readData("Items.a");
+    ArrayList<Items> itemsList = readWriteData.readData("Items.a");
     User user;
 
     public User getUser() {
@@ -38,16 +37,25 @@ public class UserManager {
             e.getMessage();
         }
     }
-    // lựa chọn sản phẩm trong cửa hàng
 
+    // lựa chọn sản phẩm trong cửa hàng
     public Items selected(int index) {
-        Items product = productList.get(index);
+        Items product = itemsList.get(index);
         return product;
     }
 
     // thêm sản phẩm vào giỏ hàng
-    public void addProductsToCart(ArrayList<Items> items) {
-        itemsList.add(items);
+    public void addProductsToCart(int index) {
+        if (itemsList.size() > 0) {
+            for (int i = 0; i < itemsList.size(); i++) {
+                if (i == (index - 1)) {
+                    itemsList.add(selected(index));
+                }
+            }
+        } else if (index >= itemsList.size()) {
+            System.err.println("Vị trí không tồn tại");
+        } else
+            System.err.println("Danh sách rỗng !!!");
         readWriteData.writeData(itemsList, "Cart.a");
     }
 

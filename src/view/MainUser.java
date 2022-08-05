@@ -17,8 +17,9 @@ public class MainUser {
         while (true) {
             System.out.println("----------------Khách hàng-----------------");
             System.out.println("[Nhập 1] Hiển thị sản phẩm");
-            System.out.println("[Nhập 2] Hiển thị sản phẩm trong giỏ");
-            System.out.println("[Nhập 3] Ví");
+            System.out.println("[Nhập 2] Thêm sản phẩm vào giỏ");
+            System.out.println("[Nhập 3] Hiển thị sản phẩm trong giỏ");
+            System.out.println("[Nhập 4] Ví");
             System.out.println("[Nhập 0] THOÁT");
             System.out.println("--------------------------------------------");
             System.out.print("[Chọn]:\t");
@@ -27,13 +28,17 @@ public class MainUser {
                 switch (choice) {
                     case 1:
                         user.display();
-                        System.out.println("\n[THÊM VÀO GIỎ]");
-                        user.addProductsToCart(items);
                         break;
-                    case 2: {
+                    case 2:
+                        user.display();
+                        System.out.println("\n[THÊM VÀO GIỎ]");
+                        user.addProductsToCart(getIndex());
+                        break;
+                    case 3: {
                         user.showProductsInCart();
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
                         System.out.println("[NHẬP 2] THANH TOÁN SẢN PHẨM");
+                        System.out.println("[NHẬP 0] THOÁT");
                         choice = Integer.parseInt(scan.nextLine());
                         switch (choice) {
                             case 1:
@@ -42,10 +47,12 @@ public class MainUser {
                             case 2:
                                 payment();
                                 break;
+                            case 0:
+                                return;
                         }
                     }
                     break;
-                    case 3: {
+                    case 4: {
                         double wallet = user.getUser().getWallet().getMoney();
                         System.out.println("Số dư trong ví:" + wallet);
                         System.out.println("\n[Nạp tiền]");
