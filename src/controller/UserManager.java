@@ -11,6 +11,7 @@ import java.util.List;
 public class UserManager {
     ReadWriteData readWriteData = ReadWriteFile.getInstance();
     ArrayList<Items> itemsList = readWriteData.readData("Items.a");
+    ArrayList<Items> cartList = readWriteData.readData("Cart.a");
     User user;
 
     public User getUser() {
@@ -34,7 +35,6 @@ public class UserManager {
             }
         } catch (Exception e) {
             System.err.println("Gian hàng trống!!!!");
-            e.getMessage();
         }
     }
 
@@ -62,37 +62,33 @@ public class UserManager {
             }
         } catch (Exception e) {
             System.err.println("Gian hàng trống!!!!");
-            e.getMessage();
         }
     }
 
     // xóa sản phẩm trong giỏ
     public void deleteProductInCart(int index) {
-        List<Items> cart = user.getCart().getList();
-        cart.remove(index);
+        if (cartList.size() > 0) {
+            for (int i = 0; i < cartList.size(); i++) {
+                if (i == (index - 1)) {
+                    cartList.remove(i);
+                    readWriteData.writeData(cartList, "Cart.a");
+                }
+            }
+        } else if (index >= cartList.size()) {
+            System.err.println("Vị trí không tồn tại");
+        } else
+            System.err.println("Danh sách rỗng !!!");
+        readWriteData.writeData(cartList, "Cart.a");
     }
 
     //tổng tiền sản phẩm trong giỏ
     public double totalPrice() {
         double totalMoneyProduct = 0;
-        List<Items> cart = user.getCart().getList();
-        for (Items clothes : cart) {
-            totalMoneyProduct += clothes.getPrice();
+        List<Items> cart = cartList;
+        for (Items i : cart) {
+            totalMoneyProduct += i.getPrice();
         }
         return totalMoneyProduct;
-    }
-
-    // thanh toán sản phẩm
-    public double payment() {
-        double moneyInWallet = user.getWallet().getMoney();
-        double payment = moneyInWallet - totalPrice();
-        user.getWallet().setMoney(payment);
-        return user.getWallet().getMoney();
-    }
-
-    // nap tiền vào ví
-    public void addMoney(double money) {
-        double wallet = user.getWallet().addMoney(money);
     }
 
 }

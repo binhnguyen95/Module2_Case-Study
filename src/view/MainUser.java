@@ -45,20 +45,11 @@ public class MainUser {
                                 user.deleteProductInCart(getIndex());
                                 break;
                             case 2:
-                                payment();
+
                                 break;
                             case 0:
-                                return;
+                                break;
                         }
-                    }
-                    break;
-                    case 4: {
-                        double wallet = user.getUser().getWallet().getMoney();
-                        System.out.println("Số dư trong ví:" + wallet);
-                        System.out.println("\n[Nạp tiền]");
-                        double money = Integer.parseInt(scan.nextLine());
-                        user.addMoney(money);
-
                     }
                     break;
                     case 0:
@@ -79,18 +70,4 @@ public class MainUser {
         return Integer.parseInt(scan.nextLine());
     }
 
-    private static void payment() {
-        double checkMoney = user.getUser().getWallet().getMoney();
-        double totalMoneyProduct = user.totalPrice();
-        if (checkMoney >= totalMoneyProduct) {
-            user.payment();
-            System.out.println("\nThanh toán thành công. \t Cảm ơn quý khách\n");
-        } else {
-            System.err.println("Nạp tiền vào ví!!!");
-            System.out.print("\nNhập số tiền:");
-            double money = Integer.parseInt(scan.nextLine());
-            user.getUser().getWallet().addMoney(money);
-            payment();
-        }
-    }
 }
