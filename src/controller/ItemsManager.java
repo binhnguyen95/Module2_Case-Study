@@ -9,7 +9,9 @@ import storage.ReadWriteData;
 import storage.ReadWriteFile;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -102,22 +104,16 @@ public class ItemsManager implements Serializable {
     }
 
     public void sortHighestFirst() {
-        ArrayList<Items> list = readWriteData.readData("Items.a");
-        list.sort(((o1, o2) -> {
-            if (o1.getPrice() < o2.getPrice())
-                return 1;
-            if (o1.getPrice() > o2.getPrice())
-                return -1;
-            else return 0;
-        }));
+        itemsList.sort(((o1, o2) -> Double.compare(o2.getPrice(), o1.getPrice())));
+        writeFile();
         display();
     }
 
     public void sortLowestFirst() {
-        itemsList.sort(((o1, o2) -> Double.compare(o2.getPrice(), o1.getPrice())));
+        itemsList.sort((Comparator.comparingDouble(Items::getPrice)));
+        writeFile();
         display();
     }
-
 
     public void writeFile() {
         readWriteData.writeData(itemsList, "Items.a");

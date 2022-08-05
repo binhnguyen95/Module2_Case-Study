@@ -28,7 +28,16 @@ public class Jacket extends Items implements Serializable {
 
     @Override
     public double getRealMoney() {
-        return 0;
+        LocalDate now = LocalDate.now();
+        LocalDate timeline1 = getExpiryDate().minusDays(120);
+        LocalDate timeline2 = getExpiryDate().minusDays(60);
+        if (timeline2.isAfter(now)) {
+            if (timeline1.isAfter(now)) return getPrice() / 10*9.5;
+            return getPrice() / 10*8;
+        }
+        else {
+            return getPrice() / 10*6;
+        }
     }
 
     @Override

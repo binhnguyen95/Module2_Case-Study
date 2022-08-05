@@ -46,16 +46,7 @@ public class UserManager {
 
     // thêm sản phẩm vào giỏ hàng
     public void addProductsToCart(int index) {
-        if (itemsList.size() > 0) {
-            for (int i = 0; i < itemsList.size(); i++) {
-                if (i == (index - 1)) {
-                    itemsList.add(selected(index));
-                }
-            }
-        } else if (index >= itemsList.size()) {
-            System.err.println("Vị trí không tồn tại");
-        } else
-            System.err.println("Danh sách rỗng !!!");
+        itemsList.add(selected(index));
         readWriteData.writeData(itemsList, "Cart.a");
     }
 
