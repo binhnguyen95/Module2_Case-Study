@@ -32,6 +32,7 @@ public class MainUser {
                     case 2:
                         user.display();
                         System.out.println("\n[THÊM VÀO GIỎ]");
+                        System.out.print("[Chọn]:\t");
                         user.addProductsToCart(getIndex());
                         break;
                     case 3: {
@@ -39,6 +40,7 @@ public class MainUser {
                         System.out.println("\n[NHẬP 1] XÓA SẢN PHẨM");
                         System.out.println("[NHẬP 2] TỔNG TIỀN SẢN PHẨM");
                         System.out.println("[NHẬP 0] THOÁT");
+                        System.out.print("[Chọn]:\t");
                         choice = Integer.parseInt(scan.nextLine());
                         switch (choice) {
                             case 1:

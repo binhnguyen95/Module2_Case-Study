@@ -25,7 +25,7 @@ public class UserManager {
     // hiển thí sản phẩm cửa hàng
 
     public void display() {
-        int count=1;
+        int count = 1;
         try{
             ArrayList<Items> displayFile = readWriteData.readData("Items.a");
             for (Items i: displayFile
@@ -46,8 +46,8 @@ public class UserManager {
 
     // thêm sản phẩm vào giỏ hàng
     public void addProductsToCart(int index) {
-        itemsList.add(selected(index));
-        readWriteData.writeData(itemsList, "Cart.a");
+        cartList.add(selected(index));
+        readWriteData.writeData(cartList, "Cart.a");
     }
 
     // hiển thị sản phẩm trong giỏ
